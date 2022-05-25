@@ -9,7 +9,10 @@ int isCorrect(int, int); // function prototype
 int main(void)
 {
    // srand( time( 0 ) ); // seed random number generator
+    //update with your name
+    puts("Hello Deb");
    guessGame();
+
 } // end main
 
 // guessGame generates numbers between 1 and 1000
