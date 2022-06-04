@@ -1,34 +1,42 @@
 /*
-* The program randomly generates numbers between  
-* 1 and 1000 for the user to guess.
+* The program randomly generates numbers   
+* between 1 and 1000 for the user to guess.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
+
+#define MIN_NUMBER 1
+const MAX_NUMBER = 100;
+
 void guessGame(void); 
 int isCorrect(int, int); 
+
 
 int main(void)
 {
    srand(time(0));
    guessGame(); 
+
+   return 0;
 } // end main
 
 
 void guessGame(void)
 {
-   int answer; 
-   int guess; 
-   int response; 
+   int answer = 0; 
+   int guess = 0; 
+   int response = 0; 
 
    do {
-      answer = 1 + rand() % 1000;
+      answer = MIN_NUMBER + rand() % MAX_NUMBER;
 
-      puts("I have a number between 1 and 1000.\n" 
-           "Can you guess my number?\n" 
-           "Please type your first guess.");
+      printf("I have a number between %d and %d .\n" 
+          "Can you guess my number?\n"
+           "Please type your first guess.", MIN_NUMBER, MAX_NUMBER);
+
       printf("%s", "? ");
       scanf("%d", &guess);
 
