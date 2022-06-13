@@ -15,14 +15,14 @@ int main( void )
    int total =0; // sum of grades entered by user
    double average =0; // average of grades
    
-  printf("Enter %lu grades.\n", NUMBER_GRADES);
+  printf("Enter %u grades.\n", NUMBER_GRADES);
   
    //enter and sum grades
    while ( counter < NUMBER_GRADES) {
        counter = counter + 1;
       printf("Enter grade %d: ",  counter); 
       scanf( "%d", &grade ); 
-      total = total + grade; 
+      total += grade; 
       
    } // end while
    
