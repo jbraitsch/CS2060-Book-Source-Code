@@ -6,7 +6,6 @@
 //const to hold number of grades so not hard coded
 const unsigned int NUMBER_GRADES = 10;
 
-
 int main( void )
 {
    //initialize variables 
@@ -26,10 +25,9 @@ int main( void )
       
    } // end while
    
-   //average grades but need to cast to float to get acurate average
-   average = (double)total / NUMBER_GRADES; // integer division
-
-   printf( "Class average is %.2lf\n", average ); // display result
+   //cast to float to get acurate average from integer division
+   average = (double)total / NUMBER_GRADES; 
+   printf( "Class average is %.2lf\n", average ); 
 
    return 0; //return value of main function
 } // end function main
