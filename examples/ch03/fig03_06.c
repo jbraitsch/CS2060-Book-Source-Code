@@ -29,8 +29,7 @@ int main( void )
    //average grades but need to cast to float to get acurate average
    average = (double)total / NUMBER_GRADES; // integer division
 
-   printf( "Class average is %lf\n", average ); // display result
-
+   printf( "Class average is %.2lf\n", average ); // display result
 
    return 0; //return value of main function
 } // end function main
