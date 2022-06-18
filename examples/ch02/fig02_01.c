@@ -6,6 +6,21 @@
 int main( void )
 {
    printf( "Welcome to C!\n" );
+
+   int length = 0;
+   int width = 0;
+   int area = 0;
+   int divided = 0;
+
+   printf("%s", "Enter the length: ");
+   scanf("%d", &length);
+   printf("%s", "Enter the width: ");
+   scanf("%d", &width);
+   area = length * width;
+   printf("Length: %d Width: %d Area: %d\n", length, width, area);
+   divided = length / width;
+   printf("Length divided by width = %d", divided);
+   return 0;
 } // end function main 
 
 
