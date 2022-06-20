@@ -12,10 +12,10 @@ int main(void)
 
    puts("Enter the letter grades." );
    puts("Enter the EOF character to end input." );
-   int grade; // one grade 
+   int grade = getchar(); // one grade 
 
    // loop until user types end-of-file key sequence
-   while ((grade = getchar()) != EOF) {
+   while (grade != EOF) {
       
       // determine which grade was input
       switch (grade) { // switch nested in while
@@ -55,6 +55,8 @@ int main(void)
             puts(" Enter a new grade."); 
             break; // optional; will exit switch anyway
       } 
+
+      grade = getchar();
    } // end while
 
    // output summary of results
