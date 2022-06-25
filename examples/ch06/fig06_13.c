@@ -2,15 +2,28 @@
 // Passing arrays and individual array elements to functions.
 #include <stdio.h>
 #define SIZE 5
+#define ARRAY_ROW 3
+#define ARRAY_COLUMN 4
 
 // function prototypes
 void modifyArray(int b[], size_t size);
-void modifyElement(int e);               
+void modifyElement(int e); 
+void printArray(const int array[]);
+void fillMultiArray(int array[][ARRAY_COLUMN], unsigned int row, unsigned int column);
+void printMultiArray(const int array[][ARRAY_COLUMN], unsigned int row, unsigned int column);
 
 // function main begins program execution
 int main(void)
 {
    int a[SIZE] = { 0, 1, 2, 3, 4 }; // initialize array a
+   printf("Address of a0] %p Address of a %x\n\n", &a[0], &a);
+
+   printArray(a);
+
+   int multiArray[ARRAY_ROW][ARRAY_COLUMN];
+
+   fillMultiArray(multiArray, ARRAY_ROW, ARRAY_COLUMN);
+   printMultiArray(multiArray, ARRAY_ROW, ARRAY_COLUMN);
 
    puts("Effects of passing entire array by reference:\n\nThe "
       "values of the original array are:");
@@ -38,6 +51,7 @@ int main(void)
 
    // output value of a[3]
    printf("The value of a[3] is %d\n", a[3]);
+
 }
 
 // in function modifyArray, "b" points to the original array "a" 
@@ -57,6 +71,40 @@ void modifyElement(int e)
    // multiply parameter by 2                                  
    printf("Value in modifyElement is %d\n", e *= 2);            
 } 
+
+void printArray(const int array[])
+{
+    for (size_t i = 0; i < SIZE; i++)
+    {
+        printf("%llu ", array[i]);
+    }
+
+    puts("\n");
+}
+
+void fillMultiArray(int array[][ARRAY_COLUMN], unsigned int row, unsigned int column)
+{
+    for (size_t i = 0; i < row; i++)
+    {
+        for (size_t j = 0; j < column; j++)
+        {
+            printf("Enter integer for row %d column %d: ", (i + 1), (j + 1));
+            scanf("%d", &array[i][j]);
+            while (getchar() != '\n');
+        }
+    }
+}
+
+void printMultiArray(const int array[][ARRAY_COLUMN], unsigned int row, unsigned int column)
+{
+    for (size_t i = 0; i < row; i++)
+    {
+        for (size_t j = 0; j < column; j++)
+        {
+            printf("Value in array row %d column %d is %d\n", (i + 1), (j + 1), array[i][j]);
+        }
+    }
+}
                           
 
 
