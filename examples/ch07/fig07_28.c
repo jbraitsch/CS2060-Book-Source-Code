@@ -15,7 +15,9 @@ int main(void)
 
    printf("%s", "Enter a number between 0 and 2, 3 to end: ");
    size_t choice; // variable to hold user's choice
-   scanf("%u", &choice);
+   //depending on your compiler you may need to change the format specifier
+   //windows needs llu  mac needs lu
+   scanf("%llu", &choice);
 
    // process user's choice
    while (choice >= 0 && choice < 3) {
@@ -25,7 +27,8 @@ int main(void)
       (*f[choice])(choice);                                
 
       printf("%s", "Enter a number between 0 and 2, 3 to end: ");
-      scanf("%u", &choice);
+      //windows needs llu  mac needs lu
+      scanf("%llu", &choice);
    } 
 
    puts("Program execution completed.");
