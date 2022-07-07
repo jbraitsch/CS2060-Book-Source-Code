@@ -18,8 +18,8 @@ int main(void)
 {
 
 	//reviewChar();
-	exploreStringCharArray();
-	//arrayPointerString(); 
+	//exploreStringCharArray();
+	arrayPointerString(); 
 
 	return 0;
 }
@@ -32,7 +32,7 @@ void exploreStringCharArray(void)
 	char string1[] = "string1 C";
 	char string2a[] = { 'S', 't', 'r', 'i', 'n', 'g', '2', ' ', 'C' }; 
 	char string2b[] = { 'S', 't', 'r', 'i', 'n', 'g', '2', ' ', 'C', '\0'};
-	char string3[10] = { " " };
+	char string3[10] = { "as if" };
 	char* string1Ptr = string1;
 	char* string3Ptr = string3;
 	char* string4Ptr = "String4Ptr C";
@@ -53,30 +53,30 @@ void exploreStringCharArray(void)
 
 	/*comment this function out after you see what happens and run again*/
 	puts("See what happens when the next function is called. Then comment this function.");
-	testStringOverflow();
+	//testStringOverflow();
 
-	/*Comment the next  lines of code after you see what happens here and with the next scanf */
+	/*
+	Comment the next  lines of code after you see what happens here and with the next scanf 
 	puts("See what happens when the following overslow is scanned and what happens with next scanf");
 	puts("Then comment out the following 4 lines of code");
 	printf("%s", "Enter a string more than 9 into string3: ");
 	scanf("%9s", string3);
 	printf("string3[] = %s\n", string3);
 	printf("*string3Ptr = %s\n\n", string3Ptr);
-	
+	*/
 	
 	printf("%s", "Enter a string  into  string3Ptr that is 9 char or less: ");
-	scanf("%9s", string3Ptr);
+	scanf("%9s", string3Ptr);//replaces string referenced by pointer with up to 9 characters
 	printf("string3[] = %s\n", string3);
 	printf("*string3Ptr = %s\n\n", string3Ptr);
 
 	printf("%s", "Enter a string into  string1[] that is 9 char or less: ");
-	scanf("%9s", string1);
+	scanf("%9s", string1);//replaces string1 array with up to 9 characters
 	printf("*string4Ptr = %s\n\n", string1);
 
-
-	/*comment the following code when you see what happens */
+	//causes an error since pointer is initiazlized with string literal
 	printf("%s", "Enter a string into  string4Ptrthat is 9 char or less: ");
-	scanf("%9s", string4Ptr);
+	scanf("%9s", string4Ptr);//causes error since in pointer initialized with literal
 	printf("*string4Ptr = %s\n\n", string4Ptr); 
 
 
@@ -88,6 +88,7 @@ void exploreStringCharArray(void)
 	printf("*string3Ptr sizeof  = %llu\n", sizeof(*string3Ptr));
 
 }
+
 
 void testStringOverflow(void)
 {
@@ -101,45 +102,46 @@ void testStringOverflow(void)
 //Understanding Array of pointers to array of characters
 void arrayPointerString(void)
 {
-	// add comment 
+	// Initializes a 2D string array with 4 rows and 9 columns 
+	//Initializes a const pointer array for strings with 4 rows and varying columns
 	char suitArray[4][9] = {"Hearts", "Diamonds", "Clubs", "Spades"};
 	const char *suitPtr[4] = {"Hearts", "Diamonds", "Clubs", "Spades"};	
 	
-	// add comment 
+	//prints the amount of bytes of the two arrays  
 	printf ("*suitPtr size_of    = %llu\n", sizeof(*suitPtr));
 	printf ("suitArray[4][9] sizeof    = %zu\n", sizeof(suitArray));
 
 	puts("\nHow do you access an array of pointers?");
 	
-	// add comment 
+	//prints the address of each element of the pointer array
 	puts("\nWhat is this doing?");
 	printf ("&suitPtr[0] = %p\n", &suitPtr[0]);
 	printf ("&suitPtr[1] = %p\n", &suitPtr[1]);
 	printf ("&suitPtr[2] = %p\n", &suitPtr[2]);
 	printf ("&suitPtr[3] = %p\n", &suitPtr[3]);
 
-	// add comment
+	//prints the pointed address of the strings held in each element
 	puts("\nWhat is this doing?");
 	printf ("suitPtr[0] = %p\n", suitPtr[0]);
 	printf ("suitPtr[1] = %p\n", suitPtr[1]);
 	printf ("suitPtr[2] = %p\n", suitPtr[2]);
 	printf ("suitPtr[3] = %p\n", suitPtr[3]);
 
-	// add comment
+	//prints the string that is dereference in each pointer array element
 	puts("\nWhat is this doing?");
 	printf ("suitPtr[0] = %s\n", suitPtr[0]);
 	printf ("suitPtr[1] = %s\n", suitPtr[1]);
 	printf ("suitPtr[2] = %s\n", suitPtr[2]);
 	printf ("suitPtr[3] = %s\n", suitPtr[3]);
 
-	// add comment
+	//prints the dereferenced first letter of each string
 	puts("\nWhat is this doing?");
 	printf ("*suitPtr[0] = %c\n", *suitPtr[0]);
 	printf ("*suitPtr[1] = %c\n", *suitPtr[1]);
 	printf ("*suitPtr[2] = %c\n", *suitPtr[2]);
 	printf ("*suitPtr[3] = %c\n", *suitPtr[3]);
 
-	// add comment
+	//prints each dereferenced letter of the first word in the pointer array
 	puts("\nWhat is this doing?");
 	printf ("suitPtr[0][0] = %c\n", suitPtr[0][0]);
 	printf ("suitPtr[0][1] = %c\n", suitPtr[0][1]);
