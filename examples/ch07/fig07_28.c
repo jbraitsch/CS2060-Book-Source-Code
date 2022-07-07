@@ -1,4 +1,5 @@
 // Fig. 7.28: fig07_28.c
+// Joseph Braitsch
 // Demonstrating an array of pointers to functions.
 #include <stdio.h>
 
@@ -10,22 +11,19 @@ double divide(double d, const double h);
 
 int main(void)
 {
-    // initialize array of 3 pointers to functions that each take an
-    // int argument and return void                              
+    // initialize array of 4 pointers to functions that each take
+    // 2 double arguments and return a double                             
     double (*f[4])(double, double) = { add, subtract, multiply, divide};
 
     puts("Enter calculator function:");
     printf("%s", "0. Add 1. Subtract 2. Multiply 3. Divide - ");
-    size_t choice; // variable to hold user's choice
-    //depending on your compiler you may need to change the format specifier
-    //windows needs llu  mac needs lu
+    size_t choice;
     scanf("%llu", &choice);
 
     // process user's choice
     while (choice >= 0 && choice < 4) {
 
-        // invoke function at location choice in array f and pass
-        // choice as an argument 
+        //prompt for the numbers to math based on choice
         printf("%s", "What two number do you want to ");
         switch (choice)
         {
@@ -37,13 +35,21 @@ int main(void)
 
         float x = 0;
         float y = 0;
-        scanf("%e", &x);
-        scanf("%e", &y);
+
+        //scans in two floats to enter into math function
+        //had issues trying to scan in doubles
+        scanf("%f", &x);
+        while (getchar() != '\n');
+        scanf("%f", &y);
+        while (getchar() != '\n');
+
+        //stores returned value of function accessed through pointer array
         double returned = (*f[choice])(x, y);
         printf("%.2f\n", returned);
+
+        //prompt and scan for new input to test 
         puts("Enter calculator function:");
         printf("%s", "0. Add 1. Subtract 2. Multiply 3. Divide - ");
-        //windows needs llu  mac needs lu
         scanf("%llu", &choice);
     }
 
