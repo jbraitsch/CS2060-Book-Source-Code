@@ -3,50 +3,79 @@
 #include <stdio.h>
 
 // prototypes
-void function1(int a);
-void function2(int b);
-void function3(int c);
+double add(double a, const double e);
+double subtract(double b, const double f);
+double multiply(double c, const double g);
+double divide(double d, const double h);
 
 int main(void)
 {
-   // initialize array of 3 pointers to functions that each take an
-   // int argument and return void                              
-   void (*f[3])(int) = {function1, function2, function3};    
+    // initialize array of 3 pointers to functions that each take an
+    // int argument and return void                              
+    double (*f[4])(double, double) = { add, subtract, multiply, divide};
 
-   printf("%s", "Enter a number between 0 and 2, 3 to end: ");
-   size_t choice; // variable to hold user's choice
-   //depending on your compiler you may need to change the format specifier
-   //windows needs llu  mac needs lu
-   scanf("%llu", &choice);
+    puts("Enter calculator function:");
+    printf("%s", "0. Add 1. Subtract 2. Multiply 3. Divide - ");
+    size_t choice; // variable to hold user's choice
+    //depending on your compiler you may need to change the format specifier
+    //windows needs llu  mac needs lu
+    scanf("%llu", &choice);
 
-   // process user's choice
-   while (choice >= 0 && choice < 3) {
+    // process user's choice
+    while (choice >= 0 && choice < 4) {
 
-      // invoke function at location choice in array f and pass
-      // choice as an argument                              
-      (*f[choice])(choice);                                
+        // invoke function at location choice in array f and pass
+        // choice as an argument 
+        printf("%s", "What two number do you want to ");
+        switch (choice)
+        {
+        case 0: puts("add: "); break;
+        case 1: puts("subtract: "); break;
+        case 2: puts("multiply: "); break;
+        case 3: puts("divide: "); break;
+        }
 
-      printf("%s", "Enter a number between 0 and 2, 3 to end: ");
-      //windows needs llu  mac needs lu
-      scanf("%llu", &choice);
-   } 
+        float x = 0;
+        float y = 0;
+        scanf("%e", &x);
+        scanf("%e", &y);
+        double returned = (*f[choice])(x, y);
+        printf("%.2f\n", returned);
+        puts("Enter calculator function:");
+        printf("%s", "0. Add 1. Subtract 2. Multiply 3. Divide - ");
+        //windows needs llu  mac needs lu
+        scanf("%llu", &choice);
+    }
 
-   puts("Program execution completed.");
-} 
-
-void function1(int a)
-{
-   printf("You entered %d so function1 was called\n\n", a);
+    printf("Program execution completed.");
 }
 
-void function2(int b)
+double add(double a, const double e)
 {
-   printf("You entered %d so function2 was called\n\n", b);
+    printf("You added %.2f and %.2f equals ", a, e);
+    a += e;
+    return a;
 }
 
-void function3(int c)
+double subtract(double b, const double f)
 {
-   printf("You entered %d so function3 was called\n\n", c);  
+    printf("You subtracted %.2f and %.2f equals ", b, f);
+    b -= f;
+    return b;
+}
+
+double multiply(double c, const double g)
+{
+    printf("You multiplied %.2f and %.2f equals ", c, g);
+    c *= g;
+    return c;
+}
+
+double divide(double d, const double h)
+{
+    printf("You divided %.2f and %.2f equals ", d, h);
+    d /= h;
+    return d;
 }
 
 
