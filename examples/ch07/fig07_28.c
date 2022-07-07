@@ -33,14 +33,14 @@ int main(void)
         case 3: puts("divide: "); break;
         }
 
-        float x = 0;
-        float y = 0;
+        double x = 0;
+        double y = 0;
 
         //scans in two floats to enter into math function
         //had issues trying to scan in doubles
-        scanf("%f", &x);
+        scanf("%lf", &x);
         while (getchar() != '\n');
-        scanf("%f", &y);
+        scanf("%lf", &y);
         while (getchar() != '\n');
 
         //stores returned value of function accessed through pointer array
