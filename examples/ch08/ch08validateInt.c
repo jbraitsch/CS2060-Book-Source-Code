@@ -15,8 +15,7 @@
 
 #define LENGTH 13
 
-void  exploreValidateInt(const char* buff);
-bool validateInt(char* buff, int* const validInt);
+bool exploreValidateInt(const char* buff);
 void printLimits();
 
 int main(void)
@@ -25,17 +24,32 @@ int main(void)
 	bool isValid = false;
 	int integerValue = 0;
 	size_t inputLength = 0;
+	char* endPtr;
 
 	printLimits();
 
 	puts("\nEnter an integer");
-	fgets(inputStr, LENGTH, stdin);
+	fgets(inputStr, LENGTH , stdin);
+	inputStr[strlen(inputStr) - 1] = '\0';
 
+	//returns isValid as true if  valid integer was input
 	for (unsigned int counter = 1; counter < 6; counter++)
 	{
-		exploreValidateInt(inputStr);
+		isValid = exploreValidateInt(inputStr);
 
 	}
+	//converts string to an integer if isValid is returned true 
+	//in exploreValidateInt
+	if (isValid) 
+	{
+		integerValue = strtol(inputStr, &endPtr, 10);
+		printf("Input %d is a valid integer\n", integerValue);
+	}
+	else
+	{
+		printf("Input %s is a not a valid integer", inputStr);
+	}
+	
 }
 
 
@@ -62,18 +76,23 @@ void printLimits()
 }
 
 
-void  exploreValidateInt(const char* buff)
+bool exploreValidateInt(const char* buff)
 {
 	char* end;
 	errno = 0;
+	bool valid = false;
 	int validInt = 0;
 	long intTest = strtol(buff, &end, 10);
+
+	//compares pointer address to see if strtol converted string
 	if (end == buff) {
 		fprintf(stderr, "%s: not a decimal number\n", buff);
 	}
+	//determines if string is properly ended
 	else if ('\0' != *end) {
 		fprintf(stderr, "%s: extra characters at end of input: %s\n", buff, end);
 	}
+	//test if integer is withing a valid range
 	else if ((LONG_MIN == intTest || LONG_MAX == intTest) && ERANGE == errno) {
 		fprintf(stderr, "%s out of range of type long\n", buff);
 	}
@@ -83,8 +102,13 @@ void  exploreValidateInt(const char* buff)
 	else if (intTest < INT_MIN) {
 		fprintf(stderr, "%ld less than INT_MIN\n", intTest);
 	}
+	//if all above is false then input is a valid int
+	//stores converted long into an int and makes the bool true
 	else {
 		validInt = (int)intTest;
-		printf("%ld is integer value ", intTest);
+		valid = true;
+		printf("%ld is integer value\n", intTest);
 	}
+
+	return valid;
 }
